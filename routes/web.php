@@ -26,3 +26,7 @@ route::put('/upadting/{id}',"CRUDController@updating");
 route::get('/delete',"CRUDController@delete");
 route::delete('/deletion/{id}',"CRUDController@deletion");
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
