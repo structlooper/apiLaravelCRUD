@@ -33,12 +33,6 @@ class CRUDController extends Controller
       return view("viewPage")->with('student_records', $student_records);
     }
    
-
-
-    // public function update(){
-    // 	$student_records = student_records::all();
-    //   return view("updatePage")->with('student_records', $student_records);
-    // }
     function updation(request $request,$id){
     	$data = student_records::find($id);
     	return view('updationPage')->with('data',$data);
@@ -51,7 +45,7 @@ class CRUDController extends Controller
         $student_record->studentClass = $request->input('studentClass');
         $student_record->rollNumber = $request->input('rollNumber');
         $student_record->update();
-        return  \redirect('/view')->with('status', 'record updated successfuly');
+        return  redirect('/view')->with('status', 'record updated successfuly');
     }
 
     public function delete(){

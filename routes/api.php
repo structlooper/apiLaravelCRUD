@@ -17,7 +17,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 route::get('/records',"apiController@recordList");
-route::get('/record/{id}','apiController@recordlistId');
+route::get('/records/{id}','apiController@recordlistId');
 route::post('/insertRecord','apiController@insertRecord');
 route::put('/updateRecord/{id}','apiController@updateRecord');
 route::delete('/deleteRecord/{id}','apiController@deleteRecord');
