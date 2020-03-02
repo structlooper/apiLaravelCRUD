@@ -1,20 +1,35 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use Illuminate\Http\Request;
 use App\student_records;
+use Illuminate\Http\Request;
+// use Tymon\JWTAuth\Facades\JWTAuth;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
+
+
+use JWTAuth;
 class apiResourceController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth:api', ['except' => ['login']]);
+    }
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(request $request)
     {
-        return response()->json(student_records::get(), 200);
+        // $generatedToken = JWTAuth::getToken();
+        // $token = $request->header('token');
+        // if ($token == $generatedToken) {
+            
+        //     return response()->json(['error' => 'You are not authrorised user'],404);
+        // }
+        return response()->json($this->guard()->student_records::get(), 200);
     }
 
     /**
@@ -111,4 +126,9 @@ class apiResourceController extends Controller
         $student_record->delete();
         return response()->json($student_record,200);
     }
+    public function guard()
+    {
+        return Auth::guard();
+    }
+
 }
